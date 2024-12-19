@@ -10,28 +10,27 @@
 </head>
 <body>
     <div id="chromoMap_Area" style="border:solid black;"></div>
-
     <script>
-        // Charger les données dynamiquement depuis un fichier JSON
-        fetch('./data.json') // Remplacez avec le chemin de votre fichier JSON
+        // Load data dynamically from a JSON file
+        fetch('./data.json') // Path to JSON
             .then(response => {
                 if (!response.ok) {
-                    throw new Error("Erreur lors du chargement du fichier JSON");
+                    throw new Error("Error loading JSON file");
                 }
                 return response.json();
             })
             .then(data => {
-                // Extraire les données des chromosomes et annotations depuis le JSON
-                const chrom_1 = data.chromosomes; // Liste des chromosomes
-                const regions = data.regions; // Régions associées
+                // Extract chromosome data and annotations from JSON
+                const chrom = data.chromosomes; // List of chromosomes
+                const regions = data.regions; // Associated regions
                 const annotations = data.annotations; // Annotations
 
-                // Initialiser chromoMap
+                // Initialise chromoMap
                 var cmap = chromoMap
-                    .chromosomes(chrom_1, regions) // Charger les chromosomes et régions
-                    .mappings(annotations, annotations); // Charger les annotations
+                    .chromosomes(chrom, regions) // Load chromosomes and regions
+                    .mappings(annotations, annotations); // Loading annotations
 
-                // Configuration du graphique
+                // Graphic configuration
                 cmap.params({
                         title: "Chromosome Visualisation",
                         n_win_factor: 10,
@@ -49,15 +48,13 @@
                         chr_color: ["darkgray", "#FF5733"]
                     });
 
-                // Rendu du graphique
+                // Graphic rendering
                 cmap.render();
             })
             .catch(error => {
-                console.error("Erreur:", error);
+                console.error("Error:", error);
             });
     </script>
-
-
 </body>
 </html>
 
