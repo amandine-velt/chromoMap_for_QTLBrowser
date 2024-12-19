@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chromoMap Example</title>
+    <script src="./d3.v5.js"></script>
+    <script src="./chromoMap.v5.ALPHA.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="chromoMap_Area" style="border:solid black;"></div>
+
+    <script>
+        // Charger les données dynamiquement depuis un fichier JSON
+        fetch('./data.json') // Remplacez avec le chemin de votre fichier JSON
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors du chargement du fichier JSON");
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Extraire les données des chromosomes et annotations depuis le JSON
+                const chrom_1 = data.chromosomes; // Liste des chromosomes
+                const regions = data.regions; // Régions associées
+                const annotations = data.annotations; // Annotations
+
+                // Initialiser chromoMap
+                var cmap = chromoMap
+                    .chromosomes(chrom_1, regions) // Charger les chromosomes et régions
+                    .mappings(annotations, annotations); // Charger les annotations
+
+                // Configuration du graphique
+                cmap.params({
+                        title: "Chromosome Visualisation",
+                        n_win_factor: 10,
+                        labels: true,
+                        label_font: 15,
+                        label_angle: -45,
+                        chr_curve: 1,
+                        chr_length: 1,
+                        guides: true,
+                        ploidy: 2,
+                        top_margin: 50
+                    })
+                    .params_per_ploidy({
+                        anno_col: Array(2).fill("#F9FF33"),
+                        chr_color: ["darkgray", "#FF5733"]
+                    });
+
+                // Rendu du graphique
+                cmap.render();
+            })
+            .catch(error => {
+                console.error("Erreur:", error);
+            });
+    </script>
+
+
+</body>
+</html>
+

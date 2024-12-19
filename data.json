@@ -1,0 +1,18 @@
+{
+    "chromosomes": [
+      { "name": "chr01", "start": 1, "end": 19000 },
+      { "name": "chr02", "start": 1, "end": 20000 },
+      { "name": "chr03", "start": 1, "end": 10000 }
+    ],
+    "regions": [
+      { "name": "Ver5__2004_Fischer et al.", "start": 10000, "end": 10000 }
+    ],
+    "annotations": [
+      { "name": "an1", "ch_name": "chr01", "ch_start": 500, "ch_end": 3500 },
+      { "name": "an2", "ch_name": "chr01", "ch_start": 6000, "ch_end": 8500 },
+      { "name": "an3", "ch_name": "chr02", "ch_start": 1000, "ch_end": 7000 },
+      { "name": "an4", "ch_name": "chr02", "ch_start": 12000, "ch_end": 18000 },
+      { "name": "an5", "ch_name": "chr01", "ch_start": 15000, "ch_end": 16000 },
+      { "name": "an6", "ch_name": "chr03", "ch_start": 3000, "ch_end": 5000 }
+    ]
+}

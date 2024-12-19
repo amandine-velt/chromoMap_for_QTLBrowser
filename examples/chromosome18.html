@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chromoMap JS (Alpha)</title>
+
+    <!-- STEP1. Import chromoMap JS and D3 JavaScript library --> 
+    <script src="./d3.v5.js"></script>
+    <script src="./chromoMap.v5.ALPHA.js"></script>
+    
+    
+    
+</head>
+<body>
+   
+    <!-- STEP2. Add a Div where chromoMap plot will be visualised --> 
+    <div id="chromoMap_Area" style="border:solid black;"></div>
+
+   <!-- STEP3. Add script to plot and configure chromoMap-->
+    <script>
+
+
+    // chromosome 01
+
+    const chrom_18_1 = [{"name":"chr18","start":1,"end":36684271}];
+
+    const chrom_18_2 = [{"name":"Ver2__2004_Fischer et al","start":326370,"end":3381765}];
+
+
+
+    var anno_18 = [{"name":"VMC3E5","ch_name":"chr18","ch_start":326370,"ch_end":326380},
+                   {"name":"VMC8B5","ch_name":"chr18","ch_start":3381765,"ch_end":3381775}];
+
+    
+
+        
+         // plotting chromoMap create a chromoMap object define chromosomes and mapping
+         var cmap = chromoMap.chromosomes(chrom_18_1,chrom_18_2)
+                             .mappings(anno_18,anno_18);
+
+
+         // configure chromoMap
+         cmap.params({
+                      title : "Chromosome 18",
+                      n_win_factor:10,
+                      labels: true,
+                      label_font: 15,
+                      label_angle : -45,
+                      chr_curve: 1,
+                      chr_length: 1,
+                      guides: true,
+                      ploidy: 2,
+                      left_margin: 200,
+                      chr_text_x_shift: 65,
+                      top_margin:50
+                    })
+            .params_per_ploidy({
+                    anno_col: Array(2).fill("#F9FF33"),
+                    chr_color: ["darkgray","#FF5733"]
+                                });
+
+        // to visualize chromoMap
+
+         cmap.render();
+
+        </script>
+    
+</body>
+</html>

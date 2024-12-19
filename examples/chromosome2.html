@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chromoMap JS (Alpha)</title>
+
+    <!-- STEP1. Import chromoMap JS and D3 JavaScript library --> 
+    <script src="./d3.v5.js"></script>
+    <script src="./chromoMap.v5.ALPHA.js"></script>
+    
+    
+    
+</head>
+<body>
+   
+    <!-- STEP2. Add a Div where chromoMap plot will be visualised --> 
+    <div id="chromoMap_Area" style="border:solid black;"></div>
+
+   <!-- STEP3. Add script to plot and configure chromoMap-->
+    <script>
+
+
+
+      // Chromosome 02
+
+    const chrom_02_1 = [{"name":"chr02","start":1,"end":20941263}];
+
+    const chrom_02_2 = [{"name":"VT__2008_Costantini et al","start":8173856,"end":8473856}];
+
+    var anno_02 = [{"name":"VMC2C10-1","ch_name":"chr02","ch_start":8323856,"ch_end":8323866}];
+            
+ 
+         // plotting chromoMap create a chromoMap object define chromosomes and mapping
+         var cmap = chromoMap.chromosomes(chrom_02_1,chrom_02_2,chrom_02_2,
+                                          chrom_02_2,chrom_02_2,chrom_02_2,
+                                          chrom_02_2,chrom_02_2)
+                             .mappings(anno_02,anno_02,anno_02,anno_02,
+                                       anno_02,anno_02,anno_02,anno_02);
+
+
+         // configure chromoMap
+         cmap.params({
+                      title : "Chromosome 02",
+                      n_win_factor:10,
+                      labels: true,
+                      label_font: 15,
+                      label_angle : -45,
+                      chr_curve: 1,
+                      chr_length: 1,
+                      guides: true,
+                      ploidy: 8,
+                      y_chr_scale: 180,
+                      top_margin:50
+                    })
+            .params_per_ploidy({
+                    anno_col: Array(8).fill("#F9FF33"),
+                    chr_color: ["darkgray","#FF5733","#FFC300","#DAF7A6","#CC14D5","#14D2D5","#14D534","#900C3F"]
+                                });
+
+        // to visualize chromoMap
+
+         cmap.render();
+
+        </script>
+    
+</body>
+</html>

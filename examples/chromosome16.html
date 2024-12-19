@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chromoMap JS (Alpha)</title>
+
+    <!-- STEP1. Import chromoMap JS and D3 JavaScript library --> 
+    <script src="./d3.v5.js"></script>
+    <script src="./chromoMap.v5.ALPHA.js"></script>
+    
+    
+    
+</head>
+<body>
+   
+    <!-- STEP2. Add a Div where chromoMap plot will be visualised --> 
+    <div id="chromoMap_Area" style="border:solid black;"></div>
+
+   <!-- STEP3. Add script to plot and configure chromoMap-->
+    <script>
+
+
+
+      // Chromosome 02
+
+    const chrom_16_1 = [{"name":"chr16","start":1,"end":27608946}];
+    const chrom_16_2 = [{"name":"VT__2008_Costantini et al","start":18357211,"end":18657211}];
+    const chrom_16_3 = [{"name":"Ver1__2004_Fischer et al","start":20540897,"end":21599291}];
+    const chrom_16_4 = [{"name":"Ver1__2004_Fischer et al","start":20390897,"end":20690897}] ;
+
+   
+
+    var anno_16 = [{"name":"VMC1E11","ch_name":"chr16","ch_start":18507211,"ch_end":18507221},
+         {"name":"UDV-052","ch_name":"chr16","ch_start":20540897,"ch_end":20540907},{"name":"GF16-18","ch_name":"chr16","ch_start":21599291,"ch_end":21599301}];
+            
+ 
+         // plotting chromoMap create a chromoMap object define chromosomes and mapping
+         var cmap = chromoMap.chromosomes(chrom_16_1,chrom_16_2,chrom_16_2,chrom_16_2
+                                         ,chrom_16_2,chrom_16_2,chrom_16_2,chrom_16_2,
+                                         chrom_16_2,chrom_16_2,chrom_16_3,chrom_16_3,
+                                         chrom_16_4,chrom_16_4,chrom_16_4)
+                             .mappings(anno_16,anno_16,anno_16,anno_16,anno_16,anno_16,anno_16,anno_16,
+                                       anno_16,anno_16,anno_16,anno_16,anno_16,anno_16,anno_16);
+
+
+         // configure chromoMap
+         cmap.params({
+                      title : "Chromosome 16",
+                      n_win_factor:10,
+                      labels: true,
+                      label_font: 15,
+                      label_angle : -45,
+                      chr_curve: 1,
+                      chr_length: 1,
+                      guides: true,
+                      ploidy: 15,
+                      y_chr_scale: 300,
+                      top_margin:50
+                    })
+            .params_per_ploidy({
+                    anno_col: Array(15).fill("#F9FF33"),
+                    chr_color: ["darkgray","#FF5733","#FFC300","#DAF7A6","#CC14D5","#14D2D5","#14D534","#900C3F","#FF5733","#FFC300","#DAF7A6","#CC14D5","#14D2D5","#14D534","#900C3F"]
+                                });
+
+        // to visualize chromoMap
+
+         cmap.render();
+
+        </script>
+    
+</body>
+</html>

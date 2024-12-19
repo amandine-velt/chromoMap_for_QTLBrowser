@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chromoMap JS (Alpha)</title>
+
+    <!-- STEP1. Import chromoMap JS and D3 JavaScript library --> 
+    <script src="./d3.v5.js"></script>
+    <script src="./chromoMap.v5.ALPHA.js"></script>
+    
+    
+    
+</head>
+<body>
+   
+    <!-- STEP2. Add a Div where chromoMap plot will be visualised --> 
+    <div id="chromoMap_Area" style="border:solid black;"></div>
+
+   <!-- STEP3. Add script to plot and configure chromoMap-->
+    <script>
+
+
+    // chromosome 01
+
+    const chrom_12_1 = [{"name":"chr12","start":1,"end":24706008}];
+
+    const chrom_12_2 = [{"name":"Ver4__2004_Fischer et al","start":23537777,"end":23837777}];
+
+    var anno_12 = [{"name":"GF12-09","ch_name":"chr12","ch_start":23687777,"ch_end":23687787}] ;
+
+        
+         // plotting chromoMap create a chromoMap object define chromosomes and mapping
+         var cmap = chromoMap.chromosomes(chrom_12_1,chrom_12_2)
+                             .mappings(anno_12,anno_12);
+
+
+         // configure chromoMap
+         cmap.params({
+                      title : "Chromosome 12",
+                      n_win_factor:10,
+                      labels: true,
+                      label_font: 15,
+                      label_angle : -45,
+                      chr_curve: 1,
+                      chr_length: 1,
+                      guides: true,
+                      ploidy: 2,
+                      top_margin:50
+                    })
+            .params_per_ploidy({
+                    anno_col: Array(2).fill("#F9FF33"),
+                    chr_color: ["darkgray","#FF5733"]
+                                });
+
+        // to visualize chromoMap
+
+         cmap.render();
+
+        </script>
+    
+</body>
+</html>
